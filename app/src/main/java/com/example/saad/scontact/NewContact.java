@@ -16,7 +16,6 @@ public class NewContact extends AppCompatActivity {
 
 
     public void enregisterOnClick(View view){
-        DatabaseHandler databaseHandler = new DatabaseHandler(this.getBaseContext());
         Contact contact = new Contact();
 
         // On construit notre objet contact:
@@ -50,6 +49,7 @@ public class NewContact extends AppCompatActivity {
         editText = (EditText) findViewById(R.id.webSite1);
         contact.setWebSite(editText.getText().toString());
 
+        Log.e("*************",contact.getNom());
 
 
 

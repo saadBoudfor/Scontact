@@ -122,6 +122,7 @@ public class ContactManager extends AppCompatActivity {
         listItem.add(map);
 
 
+
         //Création d'une HashMap pour insérer les informations du premier item de notre listView
         map = new HashMap<String, String>();
         //on insère un élément titre que l'on récupérera dans le textView titre créé dans le fichier affichageitem.xml

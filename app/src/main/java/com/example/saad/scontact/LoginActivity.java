@@ -20,6 +20,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -80,6 +81,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     return true;
                 }
                 return false;
+
             }
         });
 
@@ -93,6 +95,40 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
+
+
+
+
+
+        //Test Base de donnees:
+        Contact contact = new Contact();
+
+        contact.setNom("saad");
+        contact.setPrenom("boudfor");
+        contact.setAdresse("rue machin pays voisin");
+
+
+        contact.setEmail("saad@gmail.com");
+
+
+        contact.setPortable("+333454");
+        contact.setPhone("+3669955");
+
+        contact.setProfession("medcin");
+        contact.setWebSite("wwww");
+
+
+        ContactDAO contactDAO = new ContactDAO(this);
+        contactDAO.create(contact);
+
+
+        for(Contact c:contactDAO.readAll()){
+            Log.e("*********"+c.getId() +"::", c.getNom());
+        }
+
+
+
     }
 
     private void populateAutoComplete() {
