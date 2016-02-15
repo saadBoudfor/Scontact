@@ -1,5 +1,7 @@
 package com.example.saad.scontact;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,7 +27,6 @@ public class NewContact extends AppCompatActivity {
         editText = (EditText) findViewById(R.id.nom1);
         contact.setNom(editText.getText().toString());
 
-
         editText = (EditText) findViewById(R.id.prenom1);
         contact.setPrenom(editText.getText().toString());
 
@@ -49,9 +50,19 @@ public class NewContact extends AppCompatActivity {
         editText = (EditText) findViewById(R.id.webSite1);
         contact.setWebSite(editText.getText().toString());
 
-        Log.e("*************",contact.getNom());
+
+        ContactDAO contactDAO = new ContactDAO(this);
+
+        try {
+            Decrypter decrypter = new Decrypter("salam");
+             contact.setNom(decrypter.encrypt(contact.getNom()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
-
+        contactDAO.create(contact);
+        Intent intent =  new Intent(view.getContext(), ContactManager.class);
+        startActivity(intent);
     }
 }

@@ -13,6 +13,8 @@ public class Contact {
     private String email;
     private String profession;
 
+
+
     public int getId() {
         return id;
     }
@@ -100,10 +102,38 @@ public class Contact {
         this.webSite = webSite;
     }
 
+
+    public Contact(String nom, String presnom, String phone, String portable, String adresse, String email, String profession,  String webSite) {
+
+        this.nom = nom;
+        this.prenom = presnom;
+        this.phone = phone;
+        this.portable = portable;
+        this.adresse = adresse;
+        this.email = email;
+        this.profession = profession;
+        this.id = id;
+        this.webSite = webSite;
+    }
     public Contact() {
 
     }
 
     private String webSite;
 
+
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", phone='" + phone + '\'' +
+                ", portable='" + portable + '\'' +
+                ", adresse='" + adresse + '\'' +
+                ", email='" + email + '\'' +
+                ", profession='" + profession + '\'' +
+                ", id=" + id +
+                ", webSite='" + webSite + '\'' +
+                '}';
+    }
 }

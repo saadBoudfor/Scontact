@@ -98,34 +98,23 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
 
-
-
-
-        //Test Base de donnees:
-        Contact contact = new Contact();
-
-        contact.setNom("saad");
-        contact.setPrenom("boudfor");
-        contact.setAdresse("rue machin pays voisin");
-
-
-        contact.setEmail("saad@gmail.com");
-
-
-        contact.setPortable("+333454");
-        contact.setPhone("+3669955");
-
-        contact.setProfession("medcin");
-        contact.setWebSite("wwww");
-
-
+        ///Creation de quelque contact:
+        Contact contact;
         ContactDAO contactDAO = new ContactDAO(this);
+        contact = new Contact("Boudfor","saad","+33666775058","+2125933565","25 Rue machin, pays de l'est","saad@gmail.com","etudiant","wwww.saad-boudfor.com");
         contactDAO.create(contact);
 
+        contact = new Contact("Elfaiz","hajar","+4657879879","+21265589878","25 Rue machin, pays de l'est","saad@gmail.com","eleve","wwww.saad-boudfor.com");
+        contactDAO.create(contact);
 
-        for(Contact c:contactDAO.readAll()){
-            Log.e("*********"+c.getId() +"::", c.getNom());
-        }
+        contact = new Contact("dosso","fangan","+1264987648","+212558887445","25 Rue machin, cote d'ivoir","saad@gmail.com","etudiant","wwww.saad-boudfor.com");
+        contactDAO.create(contact);
+
+        contact = new Contact("nahel","Kridallah","+335588995","+2128887874","25 Rue machin, Frnace","saad@gmail.com","etudiant","wwww.saad-boudfor.com");
+        contactDAO.create(contact);
+
+        contact = new Contact("malika","elfaiz","+33456894547","+2128888946549","25 Rue machin, Maroc","saad@gmail.com","medecin","wwww.saad-boudfor.com");
+        contactDAO.create(contact);
 
 
 

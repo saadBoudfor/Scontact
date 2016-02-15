@@ -7,12 +7,15 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * Created by jan on 07/02/16.
  */
+
+
 public class ScontactHelper extends SQLiteOpenHelper {
     // singleton
     private static ScontactHelper instance = null;
     private static final String DATABASE_NAME = "scontact.db";
     private static final int DATABASE_VERSION = 1;
     // fields of cantact table
+
     public static final String CONTACT_TABLE = "contact";
     public static final String CONTACT_ID = "mail";    // primary key
 
@@ -47,7 +50,6 @@ public class ScontactHelper extends SQLiteOpenHelper {
 
 
             ");";
-
 
     private ScontactHelper(Context context) {
         super(context,DATABASE_NAME, null, DATABASE_VERSION);

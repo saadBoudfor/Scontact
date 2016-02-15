@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context="com.example.saad.scontact.NewContact">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:id="@+id/img"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:text="Y"
+            android:textSize="40dp"
+            android:gravity="center"
+            android:textColor="#FFF"
+            android:background="#AAA"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/img"
+            android:layout_alignTop="@+id/img"
+            android:id="@+id/nomLin"
+            android:orientation="horizontal"
+            >
+
+            <ImageView
+                android:id="@+id/prenom"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/business133"
+                android:layout_marginBottom="10dp"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Prenom"
+                android:id="@+id/prenom1"
+
+                android:textColor="@color/grey"
+                android:layout_marginLeft="20sp"
+                />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignLeft="@+id/nomLin"
+            android:layout_below="@+id/nomLin"
+            android:layout_weight="1"
+
+            >
+
+            <ImageView
+                android:id="@+id/nom"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/business133"
+                android:layout_marginBottom="10dp"
+
+                />
+            <TextView
+                android:id="@+id/nom1"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nom"
+                android:textColor="@color/grey"
+                android:layout_marginLeft="20sp"
+                />
+
+
+        </LinearLayout>
+
+
+
+
+    </RelativeLayout>
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+
+        >
+
+        <ImageView
+            android:id="@+id/adresse"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/location73"
+            android:layout_marginBottom="10dp"
+
+            />
+        <TextView
+            android:id="@+id/adresse1"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Adresse"
+            android:textColor="@color/grey"
+            android:layout_marginLeft="20sp"
+            />
+
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+
+        android:orientation="horizontal"
+        >
+
+        <ImageView
+            android:id="@+id/mail"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/at9"
+            android:layout_marginBottom="10dp"
+
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Adresse mail"
+            android:id="@+id/mail1"
+
+            android:textColor="@color/grey"
+            android:layout_marginLeft="20sp"
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+
+        >
+
+        <ImageView
+            android:id="@+id/tel1"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/call60"
+            android:layout_marginBottom="10dp"
+
+            />
+        <TextView
+            android:id="@+id/tel11"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Numero de téléphone"
+            android:textColor="@color/grey"
+            android:layout_marginLeft="20sp"
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+
+        >
+
+        <ImageView
+            android:id="@+id/gsm"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/smartphone86"
+            android:layout_marginBottom="10dp"
+
+            />
+        <TextView
+            android:id="@+id/gsm1"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Numero de téléphone portable"
+            android:textColor="@color/grey"
+            android:layout_marginLeft="20sp"
+
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+
+        >
+
+        <ImageView
+            android:id="@+id/webSite"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/window33"
+            android:layout_marginBottom="10dp"
+
+            />
+        <TextView
+            android:id="@+id/webSite1"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Site web personnel"
+            android:textColor="@color/grey"
+            android:layout_marginLeft="20sp"
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        >
+
+        <ImageView
+            android:id="@+id/proffession"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/business133"
+            android:layout_marginBottom="10dp"
+
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Profession"
+            android:id="@+id/proffession1"
+
+            android:textColor="@color/grey"
+            android:layout_marginLeft="20sp"
+            />
+
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ok"
+            android:layout_gravity="right"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+android:onClick="oKonClick"
+            android:background="#ece3d2"
+            />
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Modifier"
+            android:layout_marginRight="20dp"
+android:onClick="modifieronClick"
+            android:background="#c78b1a"
+
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Supprimer"
+            android:layout_gravity="right"
+            android:background="#f71d24"
+            android:onClick="supprimeronClick"
+            />
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

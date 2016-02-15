@@ -64,7 +64,7 @@ public class ContactDAO {
         if (c.moveToFirst()){
             // On récupere les elements:
             String firstName = c.getString(c.getColumnIndex(ScontactHelper.CONTACT_FIRSTNAME));
-            String lastName = c.getString(c.getColumnIndex(ScontactHelper.CONTACT_FIRSTNAME));
+            String lastName = c.getString(c.getColumnIndex(ScontactHelper.CONTACT_LASTNAME));
 
             String email = c.getString(c.getColumnIndex(ScontactHelper.EMAIL));
             String adresse = c.getString(c.getColumnIndex(ScontactHelper.ADRESSE));
@@ -107,9 +107,35 @@ public class ContactDAO {
                 String lastName = c.getString(c.getColumnIndex(ScontactHelper.CONTACT_LASTNAME));
                 String id = c.getString(c.getColumnIndex(ScontactHelper.CONTACT_ID));
 
+
+                String email = c.getString(c.getColumnIndex(ScontactHelper.EMAIL));
+                String adresse = c.getString(c.getColumnIndex(ScontactHelper.ADRESSE));
+
+                String website = c.getString(c.getColumnIndex(ScontactHelper.WEBSITE));
+                String profession = c.getString(c.getColumnIndex(ScontactHelper.PROFESSION));
+
+                String phone = c.getString(c.getColumnIndex(ScontactHelper.PHONE));
+                String gsm = c.getString(c.getColumnIndex(ScontactHelper.GSM));
+
+
                 Contact tamp =  new Contact();
                 tamp.setPrenom(firstName);
                 tamp.setNom(lastName);
+
+                tamp.setId(Integer.parseInt(id));
+
+                tamp.setPortable(gsm);
+                tamp.setEmail(email);
+
+                tamp.setAdresse(adresse);
+                tamp.setPhone(phone);
+
+                tamp.setProfession(profession);
+                tamp.setWebSite(website);
+
+
+
+
                 tamp.setId(Integer.parseInt(id));
 
                 contacts.add(tamp);
@@ -119,8 +145,35 @@ public class ContactDAO {
     }
 
 
-    public void delete(Contact contact){
+    public void deleteContact(Contact contact) {
         database = helper.getWritableDatabase();
-        database.delete(ScontactHelper.CONTACT_TABLE, ScontactHelper.CONTACT_ID +"="+contact.getEmail(),null);
+        database.delete(ScontactHelper.CONTACT_TABLE, ScontactHelper.CONTACT_ID + " = ?",
+                new String[] { String.valueOf(contact.getId()) });
+        database.close();
+    }
+
+
+    public int updateContact(Contact contact) {
+        database = helper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+        values.put(ScontactHelper.EMAIL, contact.getEmail());
+        values.put(ScontactHelper.ADRESSE, contact.getAdresse());
+
+        values.put(ScontactHelper.PHONE, contact.getPhone());
+        values.put(ScontactHelper.GSM, contact.getPortable());
+
+        values.put(ScontactHelper.CONTACT_FIRSTNAME, contact.getPrenom());
+        values.put(ScontactHelper.CONTACT_LASTNAME, contact.getNom());
+
+
+        values.put(ScontactHelper.WEBSITE, contact.getWebSite());
+        values.put(ScontactHelper.PROFESSION, contact.getProfession());
+
+
+        // updating row
+        return database.update(ScontactHelper.CONTACT_TABLE, values,  ScontactHelper.CONTACT_ID + " = ?",
+                new String[] { String.valueOf(contact.getId()) });
     }
 }

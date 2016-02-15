@@ -1,9 +1,8 @@
 package com.example.saad.scontact;
-
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.util.Log;
 import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -13,8 +12,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -48,155 +51,36 @@ public class ContactManager extends AppCompatActivity {
         //On déclare la HashMap qui contiendra les informations pour un item
         HashMap<String, String> map;
 
-        //Création d'une HashMap pour insérer les informations du premier item de notre listView
-        map = new HashMap<String, String>();
-        //on insère un élément titre que l'on récupérera dans le textView titre créé dans le fichier affichageitem.xml
-        map.put("nom", "Hajar Boudfor");
-        //on insère un élément description que l'on récupérera dans le textView description créé dans le fichier affichageitem.xml
-        map.put("email", "hajar.boudfor@gmail.com");
-        //on insère la référence à l'image (convertit en String car normalement c'est un int) que l'on récupérera dans l'imageView créé dans le fichier affichageitem.xml
-        map.put("img", String.valueOf(R.drawable.woman));
-        //enfin on ajoute cette hashMap dans la arrayList
-        map.put("tel", "0666775058");
-        listItem.add(map);
+        ContactDAO contactDAO = new ContactDAO(this);
+        int i =0;
+        for(Contact contact:contactDAO.readAll()){
+            Log.e("*****Reading"+i,contact.toString());
+            if(contact!=null) {
+                map = new HashMap<>();
+//                map.put("img", String.valueOf(contact.getNom().charAt(0)).toUpperCase());
 
 
-        //Création d'une HashMap pour insérer les informations du premier item de notre listView
-        map = new HashMap<String, String>();
-        //on insère un élément titre que l'on récupérera dans le textView titre créé dans le fichier affichageitem.xml
-        map.put("nom", "saad Boudfor");
-        //on insère un élément description que l'on récupérera dans le textView description créé dans le fichier affichageitem.xml
-        map.put("email", "saad.boudfor@gmail.com");
-        //on insère la référence à l'image (convertit en String car normalement c'est un int) que l'on récupérera dans l'imageView créé dans le fichier affichageitem.xml
+                map.put("nom", contact.getNom() + " " + contact.getPrenom());
+                map.put("email", contact.getEmail());
+                map.put("tel", contact.getPhone());
+                map.put("id", String.valueOf(contact.getId()));
+                listItem.add(map);
+                i++;
+            }
 
-        map.put("tel", "0751642265");
-        map.put("img", String.valueOf(R.drawable.man));
-        //enfin on ajoute cette hashMap dans la arrayList
-        listItem.add(map);
+            persisteCrypto crypto = new persisteCrypto("4646564","65456464");
 
+            //save the object
+            saveObject(crypto);
 
-        /*************----------------------TMP------------------------------------------************************/
-
+            // Get the Object
+            persisteCrypto person1 = (persisteCrypto)loadSerializedObject(new File("/sdcard/save_object.bin")); //get the serialized object from the sdcard and caste it into the Person class.
+            Log.e("Name :", person1.getSalt());
+        }
 
 
 
-
-        //Création d'une HashMap pour insérer les informations du premier item de notre listView
-        map = new HashMap<String, String>();
-        //on insère un élément titre que l'on récupérera dans le textView titre créé dans le fichier affichageitem.xml
-        map.put("nom", "Hajar Boudfor");
-        //on insère un élément description que l'on récupérera dans le textView description créé dans le fichier affichageitem.xml
-        map.put("email", "hajar.boudfor@gmail.com");
-        //on insère la référence à l'image (convertit en String car normalement c'est un int) que l'on récupérera dans l'imageView créé dans le fichier affichageitem.xml
-        map.put("img", String.valueOf(R.drawable.woman));
-        //enfin on ajoute cette hashMap dans la arrayList
-        map.put("tel", "0666775058");
-        listItem.add(map);
-
-
-        //Création d'une HashMap pour insérer les informations du premier item de notre listView
-        map = new HashMap<String, String>();
-        //on insère un élément titre que l'on récupérera dans le textView titre créé dans le fichier affichageitem.xml
-        map.put("nom", "saad Boudfor");
-        //on insère un élément description que l'on récupérera dans le textView description créé dans le fichier affichageitem.xml
-        map.put("email", "saad.boudfor@gmail.com");
-        //on insère la référence à l'image (convertit en String car normalement c'est un int) que l'on récupérera dans l'imageView créé dans le fichier affichageitem.xml
-
-        map.put("tel", "0751642265");
-        map.put("img", String.valueOf(R.drawable.man));
-        //enfin on ajoute cette hashMap dans la arrayList
-        listItem.add(map);
-
-
-
-        //Création d'une HashMap pour insérer les informations du premier item de notre listView
-        map = new HashMap<String, String>();
-        //on insère un élément titre que l'on récupérera dans le textView titre créé dans le fichier affichageitem.xml
-        map.put("nom", "Hajar Boudfor");
-        //on insère un élément description que l'on récupérera dans le textView description créé dans le fichier affichageitem.xml
-        map.put("email", "hajar.boudfor@gmail.com");
-        //on insère la référence à l'image (convertit en String car normalement c'est un int) que l'on récupérera dans l'imageView créé dans le fichier affichageitem.xml
-        map.put("img", String.valueOf(R.drawable.woman));
-        //enfin on ajoute cette hashMap dans la arrayList
-        map.put("tel", "0666775058");
-        listItem.add(map);
-
-
-
-        //Création d'une HashMap pour insérer les informations du premier item de notre listView
-        map = new HashMap<String, String>();
-        //on insère un élément titre que l'on récupérera dans le textView titre créé dans le fichier affichageitem.xml
-        map.put("nom", "saad Boudfor");
-        //on insère un élément description que l'on récupérera dans le textView description créé dans le fichier affichageitem.xml
-        map.put("email", "saad.boudfor@gmail.com");
-        //on insère la référence à l'image (convertit en String car normalement c'est un int) que l'on récupérera dans l'imageView créé dans le fichier affichageitem.xml
-
-        map.put("tel", "0751642265");
-        map.put("img", String.valueOf(R.drawable.man));
-        //enfin on ajoute cette hashMap dans la arrayList
-        listItem.add(map);
-
-
-
-        //Création d'une HashMap pour insérer les informations du premier item de notre listView
-        map = new HashMap<String, String>();
-        //on insère un élément titre que l'on récupérera dans le textView titre créé dans le fichier affichageitem.xml
-        map.put("nom", "Hajar Boudfor");
-        //on insère un élément description que l'on récupérera dans le textView description créé dans le fichier affichageitem.xml
-        map.put("email", "hajar.boudfor@gmail.com");
-        //on insère la référence à l'image (convertit en String car normalement c'est un int) que l'on récupérera dans l'imageView créé dans le fichier affichageitem.xml
-        map.put("img", String.valueOf(R.drawable.woman));
-        //enfin on ajoute cette hashMap dans la arrayList
-        map.put("tel", "0666775058");
-        listItem.add(map);
-
-
-        //Création d'une HashMap pour insérer les informations du premier item de notre listView
-        map = new HashMap<String, String>();
-        //on insère un élément titre que l'on récupérera dans le textView titre créé dans le fichier affichageitem.xml
-        map.put("nom", "saad Boudfor");
-        //on insère un élément description que l'on récupérera dans le textView description créé dans le fichier affichageitem.xml
-        map.put("email", "saad.boudfor@gmail.com");
-        //on insère la référence à l'image (convertit en String car normalement c'est un int) que l'on récupérera dans l'imageView créé dans le fichier affichageitem.xml
-
-        map.put("tel", "0751642265");
-        map.put("img", String.valueOf(R.drawable.man));
-        //enfin on ajoute cette hashMap dans la arrayList
-        listItem.add(map);
-
-
-
-        //Création d'une HashMap pour insérer les informations du premier item de notre listView
-        map = new HashMap<String, String>();
-        //on insère un élément titre que l'on récupérera dans le textView titre créé dans le fichier affichageitem.xml
-        map.put("nom", "Dosso fangan");
-        //on insère un élément description que l'on récupérera dans le textView description créé dans le fichier affichageitem.xml
-        map.put("email", "dosso.fangan@gmail.com");
-        //on insère la référence à l'image (convertit en String car normalement c'est un int) que l'on récupérera dans l'imageView créé dans le fichier affichageitem.xml
-        map.put("img", String.valueOf(R.drawable.woman));
-        //enfin on ajoute cette hashMap dans la arrayList
-        map.put("tel", "0666775058");
-        listItem.add(map);
-
-
-        //Création d'une HashMap pour insérer les informations du premier item de notre listView
-        map = new HashMap<String, String>();
-        //on insère un élément titre que l'on récupérera dans le textView titre créé dans le fichier affichageitem.xml
-        map.put("nom", "saad Boudfor");
-        //on insère un élément description que l'on récupérera dans le textView description créé dans le fichier affichageitem.xml
-        map.put("email", "saad.boudfor@gmail.com");
-        //on insère la référence à l'image (convertit en String car normalement c'est un int) que l'on récupérera dans l'imageView créé dans le fichier affichageitem.xml
-
-        map.put("tel", "0751642265");
-        map.put("img", String.valueOf(R.drawable.man));
-        //enfin on ajoute cette hashMap dans la arrayList
-        listItem.add(map);
-
-
-
-        /*******************************------------------------TMP---------------------------*********************************/
-
-        SimpleAdapter mSchedule = new SimpleAdapter (this.getBaseContext(), listItem, R.layout.contact, new String[] {"img", "nom", "email"}, new int[] {R.id.img, R.id.nom, R.id.email});
+        monAdapter mSchedule = new monAdapter (this.getBaseContext(), listItem, R.layout.contact, new String[] {"nom", "email"}, new int[] {R.id.nom, R.id.email});
 
         //On attribut à notre listView l'adapter que l'on vient de créer
         maListViewPerso.setAdapter(mSchedule);
@@ -209,23 +93,11 @@ public class ContactManager extends AppCompatActivity {
             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
                 //on récupère la HashMap contenant les infos de notre item (titre, description, img)
                 HashMap<String, String> map = (HashMap<String, String>) maListViewPerso.getItemAtPosition(position);
-                //on créer une boite de dialogue
-                AlertDialog.Builder adb = new AlertDialog.Builder(ContactManager.this);
-                //on attribut un titre à notre boite de dialogue
-                adb.setTitle(map.get("nom"));
-                //on insère un message à notre boite de dialogue, et ici on affiche le titre de l'item cliqué
-                adb.setMessage("Adresse mail: " + map.get("email"));
-                //on indique que l'on veut le bouton ok à notre boite de dialogue
-
-                adb.setMessage("Numero de téléphone: " + map.get("tel"));
-                //on indique que l'on veut le bouton ok à notre boite de dialogue
-
-                adb.setPositiveButton("Ok", null);
-                //on affiche la boite de dialogue
-                adb.show();
+                Intent intent = new Intent(v.getContext(), InfoContact.class);
+                intent.putExtra("contact_id",map.get("id"));
+                startActivityForResult(intent, 0);
             }
         });
-
 
 
 
@@ -263,4 +135,35 @@ public class ContactManager extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+    public void saveObject(persisteCrypto p){
+        try
+        {
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("/sdcard/save_object.bin"))); //Select where you wish to save the file...
+            oos.writeObject(p); // write the class as an 'object'
+            oos.flush(); // flush the stream to insure all of the information was written to 'save_object.bin'
+            oos.close();// close the stream
+        }
+        catch(Exception ex)
+        {
+            Log.v("Serial error : ",ex.getMessage());
+            ex.printStackTrace();
+        }
+    }
+
+    public Object loadSerializedObject(File f)
+    {
+        try
+        {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f));
+            Object o = ois.readObject();
+            return o;
+        }
+        catch(Exception ex)
+        {
+            Log.v("Serial Read Error : ",ex.getMessage());
+            ex.printStackTrace();
+        }
+        return null;
+    }
 }
